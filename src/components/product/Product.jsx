@@ -3,6 +3,7 @@ import './product.scss';
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Link from "react-router-dom/es/Link";
 
 class Product extends Component {
     constructor(props) {
@@ -10,13 +11,7 @@ class Product extends Component {
     }
 
     render() {
-        const productData = <Product
-            product_title={this.props.product.product_title}
-            description={this.props.product.description}
-            total={this.props.product.total}
-            proce={this.props.product.price}
-            img={this.props.product.img}
-            category={this.props.product.category.category_title}/>;
+        const link = `/product/${this.props.product.id}`;
         return (
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={this.props.product.img} />
@@ -39,7 +34,7 @@ class Product extends Component {
                             {this.props.product.description}
                         </Row>
                     </Card.Text>
-                    <Button variant="primary">More...</Button>
+                    <Link to={link} class="btn btn-info">More...</Link>
                 </Card.Body>
             </Card>
         )

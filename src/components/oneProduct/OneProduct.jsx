@@ -1,34 +1,36 @@
 import React, {Component} from 'react';
-import './category.scss';
+import './oneProduct.scss';
 import Product from "../product/Product";
 import Spinner from "react-bootstrap/Spinner";
 
-class Category extends Component {
+class OneProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: []
+            product: []
         }
     }
 
     componentDidMount() {
-        let categoryId = this.props.categoryId;
-        fetch("http://skelbimai.test/api/products/category/" + categoryId)
+        let productId = this.props.id;
+        console.log(productId)
+        fetch(`http://skelbimai.test/api/product/${productId}`)
             .then(response => response.json())
             .then(data => {
                     this.setState({
-                        products: data
+                        product: data
                     });
                 }
             );
     }
 
     render() {
-        if (this.state.products.data) {
-            let productsData = this.state.products.data.map(item => <Product product={item}/>);
+        let link = `/order/form`;
+        if (this.state.product.data) {
+            let product = <Product product={this.state.product.data} />;
             return (
                 <div>
-                    {productsData}
+                    {product}
                 </div>
             )
         } else {
@@ -42,4 +44,4 @@ class Category extends Component {
 }
 
 
-export default Category;
+export default OneProduct;

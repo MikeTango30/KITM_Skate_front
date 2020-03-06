@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './main.scss';
+import Category from "../category/Category";
 import Product from "../product/Product";
+import Spinner from "react-bootstrap/Spinner";
+import OneProduct from "../oneProduct/OneProduct";
 
 class Main extends Component {
     constructor(props) {
@@ -22,19 +25,35 @@ class Main extends Component {
     }
 
     render() {
-
-        if (this.state.products.data) {
-            let productsData = this.state.products.data.map(item => <Product product={item}/>);
+        // console.log(this.props.match.params)
+        if (this.props.match.params.categoryId) {
+            let categoryData = <Category categoryId={this.props.match.params.categoryId}  />;
             return (
-                <div>
+                <main>
+                    {categoryData}
+                </main>
+            )
+        } else if(this.props.match.params.id) {
+            let productData = <OneProduct id={this.props.match.params.id}/>;
+
+            return (
+                <main>
+                    {productData}
+                </main>
+            )
+        } else if(this.state.products.data) {
+            let productsData = this.state.products.data.map(item => <Product product={item}/>);
+
+            return (
+                <main>
                     {productsData}
-                </div>
+                </main>
             )
         } else {
             return (
-                <div className='uil-ring-css' style={{transform : "scale(0.64)"}}>
-                    <div />
-                </div>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
             )
         }
     }
