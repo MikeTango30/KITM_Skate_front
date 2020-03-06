@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './main.scss';
+import './category.scss';
 import Product from "../product/Product";
 
-class Main extends Component {
+class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +11,8 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        fetch("http://skelbimai.test/api/products")
+        let {categoryId} = this.props.match.params;
+        fetch("http://skelbimai.test/api/products/category/" + categoryId)
             .then(response => response.json())
             .then(data => {
                     this.setState({
@@ -22,7 +23,6 @@ class Main extends Component {
     }
 
     render() {
-
         if (this.state.products.data) {
             let productsData = this.state.products.data.map(item => <Product product={item}/>);
             return (
@@ -41,4 +41,4 @@ class Main extends Component {
 }
 
 
-export default Main;
+export default Category;

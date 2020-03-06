@@ -16,24 +16,24 @@ import Aside from "../aside/Aside";
 // } from 'react-router-dom';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            products: []
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         products: []
+    //     }
+    // }
 
-    componentDidMount() {
-        fetch("http://skate.test/api/products")
-            .then(response => response.json())
-            .then(data => {
-                    this.setState({
-                        products: data
-                    });
-                    console.log(this.state.products);
-                }
-            );
-    }
+    // componentDidMount() {
+    //     fetch("http://skate.test/api/products")
+    //         .then(response => response.json())
+    //         .then(data => {
+    //                 this.setState({
+    //                     products: data
+    //                 });
+    //                 console.log(this.state.products);
+    //             }
+    //         );
+    // }
 
 
     render() {
