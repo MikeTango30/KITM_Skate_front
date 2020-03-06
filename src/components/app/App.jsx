@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './app.scss';
 import Footer from "../footer/Footer";
-import Main from "../main/Main";
 import Aside from "../aside/Aside";
 import {
     BrowserRouter as Router,
@@ -16,6 +15,10 @@ import Spinner from "react-bootstrap/Spinner";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Products from "../products/Products";
+import Category from "../category/Category";
+import OneProduct from "../oneProduct/OneProduct";
+import Order from "../order/Order";
 
 
 class App extends Component {
@@ -65,12 +68,15 @@ class App extends Component {
                         <Container className="container">
                             <Row>
                                 <Col xs={10} md={8}>
+                                    <main>
                                     <Switch>
-                                        <Route exact path="/products" render={(props) => <Main {...props} />}/>
+                                        <Route exact path="/products" render={(props) => <Products {...props} />}/>
                                         <Route exact path="/products/category/:categoryId"
-                                               render={(props) => <Main {...props} />}/>
-                                        <Route exact path="/product/:id" render={(props) => <Main {...props}/>} />
+                                               render={(props) => <Category {...props} />}/>
+                                        <Route exact path="/product/:id" render={(props) => <OneProduct {...props}/>} />
+                                        <Route exact path="/order/form/:id" render={(props) => <Order {...props}/>} />
                                     </Switch>
+                                    </main>
                                 </Col>
                                 <Col>
                                     <Aside/>

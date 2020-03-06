@@ -12,7 +12,7 @@ class Category extends Component {
     }
 
     componentDidMount() {
-        let categoryId = this.props.categoryId;
+        let categoryId = this.props.match.params.categoryId;
         fetch("http://skelbimai.test/api/products/category/" + categoryId)
             .then(response => response.json())
             .then(data => {

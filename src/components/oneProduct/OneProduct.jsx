@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './oneProduct.scss';
 import Product from "../product/Product";
 import Spinner from "react-bootstrap/Spinner";
+import Link from "react-router-dom/es/Link";
+import Row from "react-bootstrap/Row";
 
 class OneProduct extends Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class OneProduct extends Component {
     }
 
     componentDidMount() {
-        let productId = this.props.id;
+        let productId = this.props.match.params.id;
         console.log(productId)
         fetch(`http://skelbimai.test/api/product/${productId}`)
             .then(response => response.json())
@@ -25,13 +27,20 @@ class OneProduct extends Component {
     }
 
     render() {
-        let link = `/order/form`;
+        let link = `/order/form/${this.props.id}`;
         if (this.state.product.data) {
             let product = <Product product={this.state.product.data} />;
             return (
                 <div>
-                    {product}
+                    <Row>
+                        {product}
+                    </Row>
+                    <Row>
+                        <Link to={link} class="btn btn-info">Buy</Link>
+                    </Row>
+
                 </div>
+
             )
         } else {
             return (
